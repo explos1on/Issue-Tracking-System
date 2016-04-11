@@ -19,14 +19,28 @@ angular.module('issueTrackingSystem.users.authentication',[])
         }
 
         function loginUser(user) {
+            user.grant_type = 'password';
             var deffered = $q.defer();
 
-            $http.post(BASE_URL + 'Account/Login',user)
-                .then(function (response) {
-                    console.log(data);
-                },function (error) {
+            // $http.post(BASE_URL + 'Token',user)
+            //     .then(function (response) {
+            //         console.log(data);
+            //     },function (error) {
+            //        
+            //     });
+
+            $http({
+                url: BASE_URL + 'Token',
+                method: 'POST',
+                data: "userName=" + user.username + "&password=" + user.password +
+                "&grant_type=password"
+            }).then(function (response) {
+                        console.log(data);
+                    },function (error) {});
+                       
                     
-                });
+            
+            
             return deffered.promise;
         }
         
