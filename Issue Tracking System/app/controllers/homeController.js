@@ -1,33 +1,4 @@
-angular.module('issueTrackingSystem.home',[
-    'issueTrackingSystem.users.authentication'
-])
+app.controller('HomeController', ['$scope', 'authenticationService', function ($scope, authenticationService) {
+    $scope.isLogged = authenticationService.isLoggedIn();
     
-.config(['$routeProvider',function ($routeProvider) {
-    $routeProvider.when('/',{
-        templateUrl: 'app/views/home/home.html',
-        controller: 'homeController'
-    });
-}])
-
-.controller('homeController',[
-    '$scope',
-    '$location',
-    'authentication',
-    function ($scope,$location,authentication) {
-        $scope.login = function (user) {
-            authentication.loginUser(user)
-                .then(function (loggedInUser) {
-                    console.log(loggedInUser)
-                    $location.path('/newsFeed');
-                });
-        };
-        
-        $scope.register = function (user) {
-            authentication.registerUser(user)
-                .then(function (registeredUser) {
-                    console.log(registeredUser)
-                });
-        };
-    }
-    
-]);
+}]);

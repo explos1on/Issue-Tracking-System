@@ -8,42 +8,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Issue Tracking System</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/theme.bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/app.css">
-
 </head>
+
 <body>
-
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="#/home" class="navbar-brand">Issue Tracking System</a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-
-        </div>
-    </div>
-</div>
 
 <div class="container">
     <div ng-view></div>
 </div>
 
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="libs/angular/angular.js"></script>
+<script src="libs/angular-route/angular-route.js"></script>
 
-<script src="app/services/users/authentication.js"></script>
-<script src="app/controllers/homeController.js"></script>
+<script src="libs/angular-resource.js"></script>
+<script src="libs/ngStorage.js"></script>
+
+<script src="libs/jquery/dist/jquery.min.js"></script>
+<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <script src="app/app.js"></script>
+
+            <!--Controllers-->
+<script src="app/controllers/authenticationController.js"></script>
+<script src="app/controllers/homeController.js"></script>
+
+<!--Services-->
+<script src="app/services/users/authenticationService.js"></script>
 
 </body>
 </html>
