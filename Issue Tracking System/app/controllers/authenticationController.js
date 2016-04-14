@@ -18,9 +18,12 @@ app.controller('AuthenticationController',
         $scope.register = function (userData) {
             authenticationService.register(userData).then(
                 function success(serverData) {
-                    authenticationService.setCredentials(serverData.data);
+                    $scope.login({
+                        username: userData.regEmail,
+                        password: userData.regPassword
+                    });
                     notifyService.showInfo('success registration');
-                    $location.path("/dashboard");
+                    
                     
                 },
                 function error(error) {

@@ -6,7 +6,7 @@ app.factory('notifyService',
             showInfo: function(msg) {
                 noty({
                     text: msg,
-                    type: 'info',
+                    type: 'success',
                     layout: 'topCenter',
                     theme: 'relax',
                     timeout: 1000}
