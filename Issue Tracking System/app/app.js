@@ -17,37 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'app/views/dashboard.html',
             controller: 'HomeController'
         })
-        .when('/logout', {
-            templateUrl: 'app/views/home.html',
-            controller: 'AuthenticationController'
-        })
 
-
-
-        //.when('/profile/edit-profile', {
-        //  templateUrl: 'views/user/edit-profile.html',
-        //  controller: 'MainController',
-        //})
-        //.when('/profile/change-password', {
-        //  templateUrl: 'views/user/change-password.html',
-        //  controller: 'MainController'
-        //})
-        //.when('/users/:username/', {
-        //  templateUrl: 'views/user/user-wall.html',
-        //  controller: 'MainController'
-        //})
-        //.when('/friends/requests/', {
-        //  templateUrl: 'views/friend-requests.html',
-        //  controller: 'MainController'
-        //})
-        //.when('/users/:username/friends/', {
-        //  templateUrl: 'views/user/user-all-friends.html',
-        //  controller: 'MainController'
-        //})
-        //.when('/me/friends/', {
-        //  templateUrl: 'views/user/all-own-friends.html',
-        //  controller: 'MainController'
-        //})
         .otherwise({
             redirectTo: '/'
         });

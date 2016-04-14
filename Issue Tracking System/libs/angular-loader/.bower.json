@@ -14,8 +14,7 @@
     "tag": "v1.5.3",
     "commit": "a15503b74a779e163d97a919eb1e446c5ad85ddc"
   },
-  "_source": "git://github.com/angular/bower-angular-loader.git",
+  "_source": "https://github.com/angular/bower-angular-loader.git",
   "_target": "^1.5.3",
-  "_originalSource": "angular-loader",
-  "_direct": true
+  "_originalSource": "angular-loader"
 }

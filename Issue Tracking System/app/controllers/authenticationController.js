@@ -1,6 +1,7 @@
 app.controller('AuthenticationController',
-    function ($scope, $location, $rootScope, authenticationService, $localStorage) {
-        $scope.isLogged = authenticationService.isLoggedIn();
+    function ($scope, $location, $rootScope, authenticationService, notifyService, $localStorage) {
+        
+        $scope.isLogged = authenticationService.isLoggedIn;
         if ($scope.isLogged) {
             $scope.userData = function () {
                 authenticationService.getCurrentUserData()
@@ -18,10 +19,12 @@ app.controller('AuthenticationController',
             authenticationService.register(userData).then(
                 function success(serverData) {
                     authenticationService.setCredentials(serverData.data);
+                    notifyService.showInfo('success registration');
                     $location.path("/dashboard");
+                    
                 },
                 function error(error) {
-                    console.log(error)
+                    notifyService.showError('User already exist or missing requirements', error)
                 }
             );
         };
@@ -31,23 +34,24 @@ app.controller('AuthenticationController',
             authenticationService.login(userData).then(
                 function success(serverData) {
                     authenticationService.setCredentials(serverData.data);
+                    notifyService.showInfo('Welcome');
                     $location.path("/dashboard");
                 },
                 function error(error) {
-                    console.log(error)
+                    notifyService.showError('Login failed',error)
                 }
             );
         };
 
         $scope.logout = function () {
-            debugger
             authenticationService.logout().then(
                 function success(serverData) {
                     authenticationService.clearCredentials(serverData.data);
+                    notifyService.showInfo('logout success');
                     $location.path('/');
                 },
                 function error(error) {
-                    console.log(error)
+                    notifyService.showError('logout failed',error);
                 }
             );
         };
@@ -56,21 +60,10 @@ app.controller('AuthenticationController',
             var data = {};
             data.name = userData.name;
             data.email = userData.email;
-            data.profileImageData = userData.profileImageData.base64;
-            data.coverImageData = userData.coverImageData.base64;
-            data.gender = userData.gender;
-
-            if (data.profileImageData == undefined) {
-                data.profileImageData = userData.profileImageData;
-            }
-
-            if (data.coverImageData == undefined) {
-                data.coverImageData = userData.coverImageData;
-            }
+            
 
             authenticationService.editProfile(data).then(
                 function success() {
-
 
                     $location.path('/');
                 },
