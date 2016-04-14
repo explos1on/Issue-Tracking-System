@@ -2,7 +2,7 @@ app.controller('AuthenticationController',
     function ($scope, $location, $rootScope, authenticationService, notifyService, $localStorage) {
         
         $scope.isLogged = authenticationService.isLoggedIn;
-        if ($scope.isLogged) {
+        if ($scope.isLogged()) {
             $scope.userData = function () {
                 authenticationService.getCurrentUserData()
                     .then( function (userData) {
@@ -46,9 +46,9 @@ app.controller('AuthenticationController',
         $scope.logout = function () {
             authenticationService.logout().then(
                 function success(serverData) {
-                    authenticationService.clearCredentials(serverData.data);
+                    authenticationService.clearCredentials();
                     notifyService.showInfo('logout success');
-                    $location.path('/');
+                    // $location.path('/');
                 },
                 function error(error) {
                     notifyService.showError('logout failed',error);

@@ -19,11 +19,11 @@
             </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-<ul class="nav navbar-nav navbar-right">
-    <li>
-        <a ng-if="isLogged()" href="#/logout" ng-click="logout()">LOGOUT</a>
-    </li>
-</ul>
+            <ul ng-if="isLogged()" class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/logout" ng-click="logout()">LOGOUT</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

@@ -17,7 +17,6 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'app/views/dashboard.html',
             controller: 'HomeController'
         })
-
         .otherwise({
             redirectTo: '/'
         });
