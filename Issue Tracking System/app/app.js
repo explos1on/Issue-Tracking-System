@@ -26,18 +26,5 @@ app.config(['$routeProvider', function ($routeProvider) {
         });
 }]);
 
-app.run(function ($rootScope, $location, authenticationService) {
-    $rootScope.$on('$locationChangeStart', function (event) {
-        var isRegisterPage = $location.path().indexOf('/register') == -1,
-            isLoginPage = $location.path().indexOf('/login') == -1,
-            isHomePage = $location.path().indexOf('/') > -1 && $location.path().length == 1,
-            isLoggedIn = authenticationService.isLoggedIn();
 
-        if (!isLoggedIn && (!isHomePage && isRegisterPage && isLoginPage)) {
-            $location.path("/");
-        } else if (isLoggedIn && (!isRegisterPage || !isLoginPage)) {
-            $location.path("/");
-        }
-    });
-});
 

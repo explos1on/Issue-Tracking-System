@@ -17,14 +17,13 @@ app.factory('authenticationService', function ($http, baseServiceUrl, $localStor
 
     authenticationService.getHeaders = function () {
         return {
-            Authorization: "Bearer " + $localStorage.currentUser.access_token,
-            'Content-Type': 'application/x-www-form-urlencoded'
+            Authorization: "Bearer " + $localStorage.currentUser.access_token
         };
     };
     
     authenticationService.getUserName = function () {
         return $localStorage.currentUser.userName;
-    }
+    };
 
     authenticationService.getCurrentUserData = function () {
         return $http({
@@ -62,20 +61,13 @@ app.factory('authenticationService', function ($http, baseServiceUrl, $localStor
             headers: this.getHeaders()
         });
     };
-
-    authenticationService.editProfile = function (userData) {
-        return $http({
-            method: 'PUT',
-            url: baseServiceUrl + '/UserInfo',
-            data: userData,
-            headers: this.getHeaders()
-        });
-    };
+    
 
     authenticationService.changePassword = function (userData) {
+        console.log(userData);
         return $http({
-            method: 'PUT',
-            url: baseServiceUrl + '/Account/changepassword',
+            method: 'POST',
+            url: baseServiceUrl + '/Account/ChangePassword',
             data: userData,
             headers: this.getHeaders()
         });

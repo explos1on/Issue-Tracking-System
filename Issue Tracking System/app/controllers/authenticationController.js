@@ -23,8 +23,6 @@ app.controller('AuthenticationController',
                         password: userData.regPassword
                     });
                     notifyService.showInfo('success registration');
-                    
-                    
                 },
                 function error(error) {
                     notifyService.showError('User already exist or missing requirements', error)
@@ -61,32 +59,14 @@ app.controller('AuthenticationController',
         
         $scope.username = authenticationService.getUserName();
         
-        $scope.editProfile = function (userData) {
-            var data = {};
-            data.name = userData.name;
-            data.email = userData.email;
-            
-
-            authenticationService.editProfile(data).then(
-                function success() {
-
-                    $location.path('/');
-                },
-                function error(error) {
-
-                }
-            );
-        };
-
         $scope.changePassword = function (userData) {
-
             authenticationService.changePassword(userData).then(
                 function success() {
-
+                    notifyService.showInfo('Change password success!');
                     $location.path('/');
                 },
                 function error(error) {
-                 
+                    notifyService.showError('unable to change password!' + error);
                 }
             )
         }
