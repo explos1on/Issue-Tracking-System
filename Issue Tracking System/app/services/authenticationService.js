@@ -21,6 +21,10 @@ app.factory('authenticationService', function ($http, baseServiceUrl, $localStor
             'Content-Type': 'application/x-www-form-urlencoded'
         };
     };
+    
+    authenticationService.getUserName = function () {
+        return $localStorage.currentUser.userName;
+    }
 
     authenticationService.getCurrentUserData = function () {
         return $http({

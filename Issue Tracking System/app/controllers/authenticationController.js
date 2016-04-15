@@ -58,7 +58,9 @@ app.controller('AuthenticationController',
                 }
             );
         };
-
+        
+        $scope.username = authenticationService.getUserName();
+        
         $scope.editProfile = function (userData) {
             var data = {};
             data.name = userData.name;
