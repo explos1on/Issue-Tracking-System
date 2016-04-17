@@ -15,20 +15,20 @@ app.factory('authenticationService', function ($http, baseServiceUrl, $localStor
         return $localStorage.currentUser != undefined;
     };
 
+    authenticationService.isAdmin = function () {
+        return $localStorage.currentUser.isAdmin;
+    };
+
     authenticationService.getHeaders = function () {
         return {
             Authorization: "Bearer " + $localStorage.currentUser.access_token
         };
     };
     
-    authenticationService.getUserName = function () {
-        return $localStorage.currentUser.userName;
-    };
-
     authenticationService.getCurrentUserData = function () {
         return $http({
             method: 'GET',
-            url: baseServiceUrl + '/me',
+            url: baseServiceUrl + 'users/me',
             headers: this.getHeaders()
         })
     };
@@ -36,16 +36,29 @@ app.factory('authenticationService', function ($http, baseServiceUrl, $localStor
     authenticationService.login = function (userData) {
         return $http({
             method: 'POST',
-            url: baseServiceUrl + '/Token',
+            url: baseServiceUrl + 'api/Token',
             data: "userName=" + userData.username + "&password=" + userData.password +
             "&grant_type=password"
+        }).success(function (data) {
+            var userData = data;
+
+            var userInfoRequest = {
+                method: 'GET',
+                url: baseServiceUrl + 'users/me',
+                headers: { Authorization: 'Bearer ' + userData.access_token }
+            };
+
+            $http(userInfoRequest).success(function (data) {
+                userData.isAdmin = data.isAdmin;
+                $localStorage.currentUser = userData;
+            })
         })
     };
 
     authenticationService.register = function (userData) {
         return $http({
             method: 'POST',
-            url: baseServiceUrl + '/Account/register',
+            url: baseServiceUrl + 'api/Account/register',
             data: {
                 Email:userData.regEmail,
                 Password: userData.regPassword,
@@ -57,7 +70,7 @@ app.factory('authenticationService', function ($http, baseServiceUrl, $localStor
     authenticationService.logout = function () {
         return $http({
             method: 'POST',
-            url: baseServiceUrl + '/Account/logout',
+            url: baseServiceUrl + 'api/Account/logout',
             headers: this.getHeaders()
         });
     };
@@ -67,7 +80,7 @@ app.factory('authenticationService', function ($http, baseServiceUrl, $localStor
         console.log(userData);
         return $http({
             method: 'POST',
-            url: baseServiceUrl + '/Account/ChangePassword',
+            url: baseServiceUrl + 'api/Account/ChangePassword',
             data: userData,
             headers: this.getHeaders()
         });

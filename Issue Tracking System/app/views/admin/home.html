@@ -1,0 +1,14 @@
+<div class="dashboard">
+    <h1>Admin Dashboard</h1>
+
+    <a class="btn btn-lg btn-success" href="#/projects">View All Projects</a>
+    <a class="btn btn-lg btn-success" href="#/projects/add">Add Project</a>
+    <div class="btn btn-lg btn-success" ng-click="showAllUsers()" ng-toggle-users ng-show-users="{{showUsers}}">Show Users</div>
+    <h3 ng-if="showUsers" class="inline">Total users: {{users.length}}</h3>
+
+    <div ng-if="showUsers" class="margin-top">
+        <label class="margin-20">Search: <input ng-model="searchText"></label>
+        <label class="margin-20">Admins only: <input type="checkbox" ng-model="isAdmin" /></label>
+        <div ng-repeat="user in users | filter:searchText | filter:isAdmin" ng-user-view></div>
+    </div>
+</div>

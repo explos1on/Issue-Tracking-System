@@ -20,10 +20,10 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li ng-if="isLogged()">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{username}}<span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SETTINGS<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#/Account/ChangePassword">Change Password</a></li>
-
+                    <li ng-if="isAdmin()"><a href="#/admin">Admin</a></li>
                     <li><a href="#/logout" ng-click="logout()"><span class="glyphicon glyphicon-off"></span>LOGOUT</a></li>
                 </ul>
             </li>

@@ -3,7 +3,7 @@
 var app = angular.module('issueTrackingSystem', ['ngRoute', 'ngResource', 'ngStorage']);
 
 app.constant({
-    'baseServiceUrl': 'https://softuni-issue-tracker.azurewebsites.net/api'
+    'baseServiceUrl': 'https://softuni-issue-tracker.azurewebsites.net/'
 });
 
 
@@ -20,6 +20,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when('/Account/ChangePassword',{
             templateUrl: 'app/views/change-password.html',
             controller: 'AuthenticationController'
+        })
+        .when('/admin',{
+            templateUrl: 'app/views/admin/home.html',
+            controller: 'AdminController'
         })
         .otherwise({
             redirectTo: '/'

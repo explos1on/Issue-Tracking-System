@@ -2,18 +2,9 @@ app.controller('AuthenticationController',
     function ($scope, $location, $rootScope, authenticationService, notifyService, $localStorage) {
         
         $scope.isLogged = authenticationService.isLoggedIn;
-        if ($scope.isLogged()) {
-            $scope.userData = function () {
-                authenticationService.getCurrentUserData()
-                    .then( function (userData) {
-
-                    },
-                    function (error) {
-                        console.log(error)
-                    }
-                );
-            }
-        }
+        
+        $scope.isAdmin = authenticationService.isAdmin;
+        
 
         $scope.register = function (userData) {
             authenticationService.register(userData).then(
@@ -32,16 +23,13 @@ app.controller('AuthenticationController',
 
         $scope.login = function (userData) {
 
-            authenticationService.login(userData).then(
-                function success(serverData) {
-                    authenticationService.setCredentials(serverData.data);
+            authenticationService.login(userData)
+                .then(function success(serverData) {
                     notifyService.showInfo('Welcome');
                     $location.path("/dashboard");
-                },
-                function error(error) {
-                    notifyService.showError('Login failed',error)
-                }
-            );
+                }, function error(error) {
+                    notifyService.showError('Login failed', error)
+                });
         };
 
         $scope.logout = function () {
@@ -49,16 +37,14 @@ app.controller('AuthenticationController',
                 function success(serverData) {
                     authenticationService.clearCredentials();
                     notifyService.showInfo('logout success');
-                    // $location.path('/');
+                    $location.path('/');
                 },
                 function error(error) {
                     notifyService.showError('logout failed',error);
                 }
             );
         };
-        
-        $scope.username = authenticationService.getUserName();
-        
+
         $scope.changePassword = function (userData) {
             authenticationService.changePassword(userData).then(
                 function success() {
