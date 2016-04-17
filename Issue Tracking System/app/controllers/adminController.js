@@ -2,7 +2,6 @@
     
 app.controller('AdminController',function ($scope,$location,userService,notifyService) {
     $scope.showUsers = false;
-    $scope.isAdmin = false;
     
     $scope.makeAdmin = function (id) {
         var userData = {userId : id};
