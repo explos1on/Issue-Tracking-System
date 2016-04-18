@@ -8,7 +8,9 @@ app.factory('notifyService',
                     text: msg,
                     type: 'success',
                     layout: 'topCenter',
+                    force: true,
                     theme: 'relax',
+                    killer: true,
                     timeout: 1000}
                 );
             },
@@ -34,6 +36,8 @@ app.factory('notifyService',
                 noty({
                     text: msg,
                     type: 'error',
+                    force: true,
+                    killer: true,
                     layout: 'topCenter',
                     theme: 'relax',
                     timeout: 5000}

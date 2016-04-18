@@ -1,3 +1,5 @@
+'use strict',
+
 app.controller('AuthenticationController',
     function ($scope, $location, $rootScope, authenticationService, notifyService, $localStorage) {
         

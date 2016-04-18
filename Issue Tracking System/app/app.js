@@ -25,6 +25,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'app/views/admin/home.html',
             controller: 'AdminController'
         })
+        .when('/projects/add',{
+            templateUrl: 'app/views/project-form.html',
+            controller: 'ProjectController'
+        })
         .otherwise({
             redirectTo: '/'
         });
