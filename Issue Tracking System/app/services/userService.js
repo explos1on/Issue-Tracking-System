@@ -22,10 +22,8 @@ app.factory('userService',function ($http,baseServiceUrl,authenticationService) 
                 data: data,
                 headers: authenticationService.getHeaders()
             };
-            
-            $http(request).success(function (data) {
-                success(data);
-            }).error(error);
+
+            $http(request)
         }
 
     }

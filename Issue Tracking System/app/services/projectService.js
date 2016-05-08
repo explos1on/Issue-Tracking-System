@@ -8,16 +8,24 @@
                     url: baseServiceUrl + 'projects',
                     headers: authenticationService.getHeaders()
                 };
-                
-                $http(request).success(function (data) {
+
+                return $http(request).success(function (data) {
                     success(data);
                 }).error(error);
             },
 
 
             addProjects: function () {
-               return $http
+               var request = {
+                   url : baseServiceUrl +'Projects',
+                   method : "POST",
+                   headers: authenticationService.getHeaders(),
+                   data: projectData
+               };
+                return $http(request).success(function (data) {
+                    success(data);
+                }).error(error);
             }
-        }
-    });
+        
+    }});
 

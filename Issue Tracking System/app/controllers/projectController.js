@@ -28,4 +28,13 @@
                         console.log(error);
                     })
             }
+            
+            $scope.getAllProjects = function () {
+                projectService.getAllProjects()
+                    .then(function (projectsData) {
+                        $scope.projects = projectsData;
+                    })
+            }
+            
+            $scope.getAllProjects();
     });
